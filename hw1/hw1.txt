@@ -1,0 +1,32 @@
+`subset a b` function uses recursion and compares the list element by element;
+`equal_sets a b` function uses the fact that two sets are equal if and only if 
+they are subset of each other
+`set_union` utilizes the :: operator to concatenate list a to be
+`set_all_union`  utilizes the @ operator to concatenate the lists in list a to 
+list b which is also a list of a list
+`self_member` cannot be written in OCaml since a set which contains itself does 
+not have the same type as itself. Different types of data cannot be compared in 
+OCaml.
+`computed_fixed_point` determines fixed points for f(x) = x
+However, in my implementation, it will loops infinitedly if there isn't a fixed 
+point.
+`filter_reachable` uses 5 helper functions including 
+`find_nonterminal_all` which search through the list of nonterminal symbols 
+and return reachable nonterminal symbols
+`filter_symbols` which filters through a list of symbols and return all the
+nonterminal symbols in the list as a list. 
+`filter_rules_list` which filters through a list of rules to construct a list of 
+all nonterminal symbols that is led to by replacing the left hand side symbols 
+recursively
+`get_all_nonterminals` gets all of the nonterminals given a symbol from an already
+filterd grammar
+`comp_create_final_list` compares the tentative result list to the original grammar 
+list and produce the final result list that is in the same order as the original 
+grammar rule list.
+For the final question, I spent a lot of time thinking about possible solutions.
+I tried to do the same thing as the python code did using the computed_fixed_point 
+function but I got confused how the function is used. So I chose the current 
+approach by parsing the grammar into parts and filter the grammar rules into list 
+of nonterminal list and into list of reachable nonterminal list, then filter all
+the rules that can replace the reachable nonterminals, finally crosschecked with
+the original list to produce a list of grammar in the original order.
