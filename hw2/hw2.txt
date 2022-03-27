@@ -1,0 +1,56 @@
+Function 1 and 2 are pretty easy to tackle with. 
+I was confused about the goal of convert_grammar in the
+beginning since I assumed that we were suppose to 
+translate the grammar from homework1 into the given 
+grammar in homework2's testcase. After clarifications 
+from my TA, it was straightforward. 
+
+Function 3 was a little hard to think about since the 
+function we need to write tackle recussion and disjunction
+altogether. It was difficult to keep track of the current 
+searching position while search through the next possible
+rule for the next symbol in given fragment. 
+
+Using mutually-recursive functions, I was able to achieve that
+goal. For the make_parser function, I thought it would be 
+easy to implement since I have already implemented 
+make_matcher function. My inital thought was I can use 
+make_matcher to produce a matcher and use an acceptor that
+doesn't accept anything to find a possible parsing result. 
+However, I realized the mutually-recursive functions written
+for make_matcher cannot be directly reused since it doesn't
+produce a complete parsed list. So slight modifications 
+had to be done despite the functions cannot be reused 
+directly. 
+
+Also for make_parser function, I was able to get the 
+list of all the rules used to parse the fragments in
+sequence. It was challenging for me to come up with the 
+function which convert the list into a tree structure. 
+I knew depth-first search can be used but I relied on the 
+past quarter TA github hint when I was making the parse
+tree. 
+
+When I was testing make_parser, it was unclear to me what
+exactly was needed to be done to test for its weakness. 
+I tried passing in long, complicated fragments that is 
+hard to keep track of but everything seems to be working
+well. Later I edited my grammar and allowed Fruits to be 
+recursive. I found that the function make_matcher will 
+never output and it is stuck. Upon reexamination, I
+think the problem is that for every recursive grammar,
+my make_matcher function always tries and match the 
+recursive rule instead of the terminating rule if the
+recursive rule is placed above (as I have commentted out
+in Line 27 in hw2test.ml file, it will stop the rest of the 
+testcases from running). 
+
+A mistake that I made when I was testing make_matcher 
+was that I tried to manually type out how the parsed
+trees were supposed to look like and it was not pleasant.
+After discussing with some classmates, I realized that
+the prompt for question 6 gives an idea of exactly how
+I can test my make_parser function: if we use the 
+parse_tree_leaves function from question 2 and call it 
+upon the parsed tree, we can get what was given to us
+from the fragments. 
